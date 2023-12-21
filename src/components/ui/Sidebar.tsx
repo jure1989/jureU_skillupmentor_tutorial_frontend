@@ -1,6 +1,6 @@
-import { routes } from 'constants/routesConstants'
 import Button from 'react-bootstrap/Button'
 import Offcanvas from 'react-bootstrap/Offcanvas'
+import { routes } from 'constants/routesConstants'
 import { Dispatch, FC, SetStateAction, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
@@ -55,6 +55,7 @@ const Sidebar: FC = () => {
 
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
+
   return (
     <div>
       <Button
@@ -72,7 +73,7 @@ const Sidebar: FC = () => {
         >
           <path
             fillRule="evenodd"
-            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
           />
         </svg>
       </Button>
@@ -84,21 +85,21 @@ const Sidebar: FC = () => {
       >
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
-            <img src="/images/logo.png" width={123} alt="Skillup Mentor" />
+            <img src="/images/logo.png" width={123} alt="SkillUp Mentor" />
           </Offcanvas.Title>
-          <Offcanvas.Body>
-            <ul className="ps-0 list-unstyled">
-              {sidebarItems.map((item, index) => (
-                <Item
-                  key={index}
-                  title={item.title}
-                  href={item.href}
-                  setOpen={setOpen}
-                />
-              ))}
-            </ul>
-          </Offcanvas.Body>
         </Offcanvas.Header>
+        <Offcanvas.Body>
+          <ul className="ps-0 list-unstyled">
+            {sidebarItems.map((item, index) => (
+              <Item
+                key={index}
+                title={item.title}
+                href={item.href}
+                setOpen={setOpen}
+              />
+            ))}
+          </ul>
+        </Offcanvas.Body>
       </Offcanvas>
     </div>
   )
