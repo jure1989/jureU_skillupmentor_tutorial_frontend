@@ -8,7 +8,7 @@ const DashboardRolesEdit: FC = () => {
 
   return (
     <DashboardLayout>
-      <h1 className="mb-4 text-center">Create new role</h1>
+      <h1 className="mb-4 text-center">Edit role</h1>
       <CreateUdateRoleForm defaultValues={location.state} />
     </DashboardLayout>
   )
