@@ -3,9 +3,9 @@ import {
   useRegisterForm,
 } from 'hooks/react-hook-form/useRegister'
 import { ChangeEvent, FC, useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import Toast from 'react-bootstrap/Toast'
+import { useNavigate, Link } from 'react-router-dom'
 import ToastContainer from 'react-bootstrap/ToastContainer'
+import Toast from 'react-bootstrap/Toast'
 import { Form } from 'react-bootstrap'
 import { Controller } from 'react-hook-form'
 import FormLabel from 'react-bootstrap/FormLabel'
@@ -37,8 +37,7 @@ const RegisterForm: FC = () => {
       setApiError(response.data.message)
       setShowError(true)
     } else {
-      // Login user before uploading avatar image:
-
+      // Login user before uploading an avatar image
       const loginResponse = await API.login({
         email: data.email,
         password: data.password,
@@ -52,15 +51,13 @@ const RegisterForm: FC = () => {
         setApiError(loginResponse.data.message)
         setShowError(true)
       } else {
-        // Upload avatar:
-
+        // Upload avatar
         const formData = new FormData()
-        formData.append('avatar', file, File.name)
+        formData.append('avatar', file, file.name)
         const fileResponse = await API.uploadAvatar(
           formData,
           loginResponse.data.id,
         )
-
         if (fileResponse.data?.statusCode === StatusCode.BAD_REQUEST) {
           setApiError(fileResponse.data.message)
           setShowError(true)
@@ -70,8 +67,7 @@ const RegisterForm: FC = () => {
           setApiError(fileResponse.data.message)
           setShowError(true)
         } else {
-          // Get user with avatar image:
-
+          // Get user with avatar image
           const userResponse = await API.fetchUser()
           if (
             userResponse.data?.statusCode === StatusCode.INTERNAL_SERVER_ERROR
@@ -80,14 +76,13 @@ const RegisterForm: FC = () => {
             setShowError(true)
           } else {
             authStore.login(userResponse.data)
-            navigate('/')
+            navigate(routes.HOME)
           }
         }
       }
     }
   })
 
-  // Handling file error if there is no file which is required:
   const handleFileError = () => {
     if (!file) setFileError(true)
     else setFileError(false)
@@ -119,31 +114,31 @@ const RegisterForm: FC = () => {
         <Form.Group className="d-flex flex-column justify-content-center align-items-center">
           <FormLabel htmlFor="avatar" id="avatar-p">
             <Avatar round src={preview as string} alt="Avatar" />
-            <input
-              onChange={handleFileChange}
-              id="avatar"
-              name="avatar"
-              type="file"
-              aria-label="Avatar"
-              aria-describedby="avatar"
-              className="d-none"
-            />
-            {fileError && (
-              <div className="d-block invalid-feedback text-danger mb-2 text-center">
-                Field avatar is required
-              </div>
-            )}
           </FormLabel>
+          <input
+            onChange={handleFileChange}
+            id="avatar"
+            name="avatar"
+            type="file"
+            aria-label="Avatar"
+            aria-describedby="avatar"
+            className="d-none"
+          />
+          {fileError && (
+            <div className="d-block invalid-feedback text-danger mb-2 text-center">
+              Field avatar is required
+            </div>
+          )}
         </Form.Group>
         <Controller
           control={control}
           name="first_name"
           render={({ field }) => (
             <Form.Group className="mb-3">
-              <FormLabel htmlFor="first_name">First name:</FormLabel>
+              <FormLabel htmlFor="first_name">First name</FormLabel>
               <input
                 {...field}
-                type="first_name"
+                type="text"
                 aria-label="First name"
                 aria-describedby="first_name"
                 className={
@@ -163,10 +158,10 @@ const RegisterForm: FC = () => {
           name="last_name"
           render={({ field }) => (
             <Form.Group className="mb-3">
-              <FormLabel htmlFor="last_name">Last name:</FormLabel>
+              <FormLabel htmlFor="last_name">Last name</FormLabel>
               <input
                 {...field}
-                type="last_name"
+                type="text"
                 aria-label="Last name"
                 aria-describedby="last_name"
                 className={
@@ -186,7 +181,7 @@ const RegisterForm: FC = () => {
           name="email"
           render={({ field }) => (
             <Form.Group className="mb-3">
-              <FormLabel htmlFor="email">Email:</FormLabel>
+              <FormLabel htmlFor="email">Email</FormLabel>
               <input
                 {...field}
                 type="email"
@@ -210,7 +205,7 @@ const RegisterForm: FC = () => {
           name="password"
           render={({ field }) => (
             <Form.Group className="mb-3">
-              <FormLabel htmlFor="password">Password:</FormLabel>
+              <FormLabel htmlFor="password">Password</FormLabel>
               <input
                 {...field}
                 type="password"
@@ -234,14 +229,12 @@ const RegisterForm: FC = () => {
           name="confirm_password"
           render={({ field }) => (
             <Form.Group className="mb-3">
-              <FormLabel htmlFor="confirm_password">
-                Confirm password:
-              </FormLabel>
+              <FormLabel htmlFor="confirm_password">Confirm password</FormLabel>
               <input
                 {...field}
                 type="password"
                 aria-label="Confirm password"
-                aria-describedby="confirm password"
+                aria-describedby="confirm_password"
                 className={
                   errors.confirm_password
                     ? 'form-control is-invalid'
@@ -270,7 +263,7 @@ const RegisterForm: FC = () => {
         <ToastContainer className="p-3" position="top-end">
           <Toast onClose={() => setShowError(false)} show={showError}>
             <Toast.Header>
-              <strong className="me-auto text-danger">Error</strong>
+              <strong className="me-suto text-danger">Error</strong>
             </Toast.Header>
             <Toast.Body className="text-danger bg-light">{apiError}</Toast.Body>
           </Toast>
