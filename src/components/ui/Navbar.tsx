@@ -1,10 +1,11 @@
-import Button from 'react-bootstrap/Button'
-import { routes } from 'constants/routesConstants'
-import { FC, useEffect, useState } from 'react'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
-import authStore from 'stores/auth.store'
-import ToastContainer from 'react-bootstrap/ToastContainer'
 import Toast from 'react-bootstrap/Toast'
+import { routes } from 'constants/routesConstants'
+import { FC, useState } from 'react'
+import Button from 'react-bootstrap/Button'
+import ToastContainer from 'react-bootstrap/ToastContainer'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import authStore from 'stores/auth.store'
 import { StatusCode } from 'constants/errorConstants'
 import * as API from 'api/Api'
 
@@ -23,17 +24,17 @@ const Navbar: FC = () => {
       setShowError(true)
     } else {
       authStore.signout()
-      navigate('/')
+      navigate(routes.HOME)
     }
   }
 
   return (
     <>
       <header>
-        <nav className="navbar navbar-expand-lg bg-body-light">
+        <nav className="navbar navbar-expand-lg bg-light">
           <div className="container-xxl p-4 pb-0">
             <Link className="navbar-brand" to={routes.HOME}>
-              <img src="/images/logo.png" alt="Skillup Mentor" width={123} />
+              <img src="/images/logo.png" alt="SkillUp Mentor" width={123} />
             </Link>
             <button
               className="navbar-toggler"
@@ -90,7 +91,7 @@ const Navbar: FC = () => {
         <ToastContainer className="p-3" position="top-end">
           <Toast onClose={() => setShowError(false)} show={showError}>
             <Toast.Header>
-              <strong className="me-auto text-danger">Error</strong>
+              <strong className="me-suto text-danger">Error</strong>
             </Toast.Header>
             <Toast.Body className="text-danger bg-light">{apiError}</Toast.Body>
           </Toast>

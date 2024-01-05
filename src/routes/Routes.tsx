@@ -43,18 +43,15 @@ export const AppRoutes: AppRoute[] = [
   // Restricted Routes
   {
     type: RouteType.RESTRICTED,
-    path: '/signup',
-    children: <Register />,
-  },
-
-  {
-    type: RouteType.RESTRICTED,
     path: '/login',
     children: <Login />,
   },
-
+  {
+    type: RouteType.RESTRICTED,
+    path: '/signup',
+    children: <Register />,
+  },
   // Private Routes
-
   {
     type: RouteType.PRIVATE,
     path: '/dashboard',
@@ -107,10 +104,9 @@ export const AppRoutes: AppRoute[] = [
   },
   {
     type: RouteType.PRIVATE,
-    path: '/dashboard/products/orders',
+    path: '/dashboard/orders',
     children: <DashboardOrders />,
   },
-
   // Public Routes
   {
     type: RouteType.PUBLIC,

@@ -18,11 +18,11 @@ export const useRegisterForm = () => {
     password: Yup.string()
       .matches(
         /^(?=.*\d)[A-Za-z.\s_-]+[\w~@#$%^&*+=`|{}:;!.?"()[\]-]{6,}/,
-        'Password must have at least one muber, lower or upper case letter and it has to be longer than 5 characters.',
+        'Password must have at least one number, lower or upper case letter and it has to be longer than 5 characters.',
       )
       .required(),
     confirm_password: Yup.string()
-      .oneOf([Yup.ref('password'), null], 'Passwords do not match.')
+      .oneOf([Yup.ref('password'), null], 'Passwords do not match')
       .required('Passwords do not match'),
   })
 

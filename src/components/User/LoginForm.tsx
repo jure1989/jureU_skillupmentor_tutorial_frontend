@@ -1,8 +1,8 @@
 import { LoginUserFields, useLoginForm } from 'hooks/react-hook-form/useLogin'
 import { FC, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import Toast from 'react-bootstrap/Toast'
+import { useNavigate, Link } from 'react-router-dom'
 import ToastContainer from 'react-bootstrap/ToastContainer'
+import Toast from 'react-bootstrap/Toast'
 import { Form } from 'react-bootstrap'
 import { Controller } from 'react-hook-form'
 import FormLabel from 'react-bootstrap/FormLabel'
@@ -29,7 +29,7 @@ const LoginForm: FC = () => {
       setShowError(true)
     } else {
       authStore.login(response.data)
-      navigate('/')
+      navigate(routes.HOME)
     }
   })
 
@@ -41,7 +41,7 @@ const LoginForm: FC = () => {
           name="email"
           render={({ field }) => (
             <Form.Group className="mb-3">
-              <FormLabel htmlFor="email">Email:</FormLabel>
+              <FormLabel htmlFor="email">Email</FormLabel>
               <input
                 {...field}
                 type="email"
@@ -65,7 +65,7 @@ const LoginForm: FC = () => {
           name="password"
           render={({ field }) => (
             <Form.Group className="mb-3">
-              <FormLabel htmlFor="password">Password:</FormLabel>
+              <FormLabel htmlFor="password">Password</FormLabel>
               <input
                 {...field}
                 type="password"
@@ -87,7 +87,7 @@ const LoginForm: FC = () => {
         <div className="d-flex justify-content-between align-items-center mb-2">
           <p className="mb-0">Don{"'"}t have an account yet?</p>
           <Link className="text-decoration-none text-end" to={routes.SIGNUP}>
-            Create Account
+            Create account
           </Link>
         </div>
         <Button className="w-100" type="submit">
@@ -98,7 +98,7 @@ const LoginForm: FC = () => {
         <ToastContainer className="p-3" position="top-end">
           <Toast onClose={() => setShowError(false)} show={showError}>
             <Toast.Header>
-              <strong className="me-auto text-danger">Error</strong>
+              <strong className="me-suto text-danger">Error</strong>
             </Toast.Header>
             <Toast.Body className="text-danger bg-light">{apiError}</Toast.Body>
           </Toast>

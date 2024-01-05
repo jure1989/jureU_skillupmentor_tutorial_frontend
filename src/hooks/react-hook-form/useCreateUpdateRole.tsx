@@ -13,9 +13,10 @@ interface Props {
 
 export const useCreateUpdateRoleForm = ({ defaultValues }: Props) => {
   const CreateUpdateRoleSchema = Yup.object().shape({
-    name: Yup.string().required('Name is required.'),
+    name: Yup.string().required('Name is required'),
     permissions: Yup.array().min(1),
   })
+
   const {
     handleSubmit,
     formState: { errors },

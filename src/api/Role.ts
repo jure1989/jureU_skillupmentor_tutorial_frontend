@@ -7,7 +7,7 @@ export const fetchRoles = async () =>
   apiRequest<undefined, RoleType[]>('get', apiRoutes.ROLES_PREFIX)
 
 export const fetchPaginatedRoles = async (pageNumber: number) =>
-  apiRequest<undefined, RoleType>(
+  apiRequest<undefined, RoleType[]>(
     'get',
     `${apiRoutes.ROLES_PREFIX}/paginated?page=${pageNumber}`,
   )
